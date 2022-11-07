@@ -16,7 +16,7 @@ Nas ferramentas de busca da internet e entrevistas de emprego de grandes empresa
 
 **Qual a importância de solucionar esse problema?**
 
-??? Exercício
+??? Exercício 1
 
 Entre no site da Amazon e busque por "tvplasma".
 Depois entre no site da Americanas e faça a mesma busca.
@@ -69,7 +69,7 @@ E as seguintes strings:
 "camisabordada"
 ```
 
-??? Exercício
+??? Exercício 2
 
 O que o algoritmo retornaria?
 
@@ -79,7 +79,7 @@ True
 False 
 True
 True
-```
+``` 
 
 "garrafadeagua" retorna {green}(True), pois no banco de dados há "garrafa", "de" e "agua".
 
@@ -90,6 +90,21 @@ O mesmo para "monitor" e "camisabordada".
 
 ???
 
+RASCUNHO - EXPLICAR RECURSAO
+---
+
+Agora que já sabemos as entradas e as saídas do algoritmo, vamos ver como ele funciona.
+
+
+
+RASCUNHO - EXPLICAR PROGRAMAÇAO DINAMICA
+---
+
+RASCUNHO - COMPLEXIDADE
+---
+
+RASCUNHO - DESAFIO: MUDAR O CODIGO PARA IMPRIMIR AS STRINGS SEGMENTAS
+---
 
 
 
@@ -100,6 +115,7 @@ O mesmo para "monitor" e "camisabordada".
 
 
 
+--APAGAR--APAGAR--APAGAR--APAGAR--APAGAR--APAGAR--APAGAR--APAGAR--APAGAR
 
 Subtítulo
 ---------
