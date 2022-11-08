@@ -27,29 +27,33 @@
 <h1>Algoritmo de Programação Dinâmica para o Problema da Quebra em Palavras</h1>
 <h2>Problema</h2>
 <p><strong>Qual a o problema?</strong></p>
-<p>O problema da quebra em palavras consiste em dado um conjunto de palavras sem espaço, descobrir se esse mesmo conjunto de palavras pode ser separado por espaços ou não.</p>
+<p>O problema da quebra em palavras consiste que dado um conjunto de palavras sem espaço, descobrir se esse mesmo conjunto de palavras pode ser separado por espaços ou não.</p>
 <p><strong>Onde se encontra?</strong></p>
-<p>Nas ferramentas de busca da internet e entrevistas de emprego de grandes empresas de tecnologia, como por exemplo a Google.</p>
+<p>Esse problema se encontra em grandes mecanismos de busca como o Google, Bing, Yahoo e em entrevistas de emprego para as grandes empresas de tecnologia, como o Google.</p>
 <p><strong>Qual a importância de solucionar esse problema?</strong></p>
 <blockquote class="question">
 <p>Exercício 1</p>
 <p>Entre no site da Amazon e busque por “tvplasma”.
-Depois entre no site da Americanas e faça a mesma busca.
+Depois entre no site das Americanas e faça a mesma busca.
 Há diferença entre as respostas?</p>
 <details class="answer">
 <summary>Gabarito</summary>
-<p>No site da Amazon é devolvido os resultados para “tv plasma”, já no site da Americanas não é encontrado nenhum resultado.</p>
+<p>No site da Amazon é devolvido os resultados para “tv plasma”, já no site das Americanas não é encontrado nenhum resultado.</p>
 </details>
 </blockquote>
-<p>Isso é um problema visto que se você fosse comprar uma tv de plasma na Americanas, e escrevesse “tvplasma” na ferramenta de busca, o site não te retornaria nenhum resultado. Dando a entender que a Americanas não vende tvs de plasma (o que não é verdade) e a empresa perderia a venda.</p>
+<p>Isso é um problema, visto que se você fosse comprar uma tv de plasma nas Americanas, e escrevesse “tvplasma” na ferramenta de busca, o site não te retornaria nenhum resultado. Dando a entender que as Americanas não vende tvs de plasma (o que não é verdade) e a empresa perderia a venda.</p>
 <h2>Implementação</h2>
 <p><strong>O que é dado?</strong></p>
 <ul>
 <li>Uma string (conjunto de palavras sem espaço).</li>
 <li>Uma lista de palavras existentes (banco de dados).</li>
 </ul>
+<blockquote class="warning">
+<p>Aviso</p>
+<p>A lista de palavras existentes seria como um dicionário. Não o dicionário que a gente conhece da programação, mas aquele gigante livro cheio de palavras.</p>
+</blockquote>
 <p><strong>O que fazer?</strong></p>
-<p>Fazer um algoritmo para descobrir se a string pode ser segmentada em espaços ou não.</p>
+<p>Fazer um algoritmo para descobrir se a string dada pode ser segmentada em espaços ou não.</p>
 <p><strong>O que retornar?</strong></p>
 <p>Um boolean:</p>
 <ul>
@@ -62,7 +66,7 @@ Há diferença entre as respostas?</p>
 </ul>
 <blockquote class="warning">
 <p>Aviso</p>
-<p>Por simplicidade iremos retornar apenas um boolean, mas facilmente poderiamos alterar o código para retornar a string segmentada em espaços.</p>
+<p>Por simplicidade iremos retornar apenas um boolean, mas facilmente poderiamos alterar o código para retornar as possíveis segmentações da string em espaço.</p>
 </blockquote>
 <p><strong>Prática</strong></p>
 <p>Dado a seguinte lista de palavras:</p>
@@ -89,80 +93,324 @@ True
 <p>“camisaxadrez” retorna <span class="md-colorify md-colorify--red">False</span>, pois no banco de dados não há a palavra “xadrez”, apesar de ter “camisa”.</p>
 </details>
 </blockquote>
-<h2>RASCUNHO - EXPLICAR RECURSAO</h2>
-<p>Agora que já sabemos as entradas e as saídas do algoritmo, vamos ver como ele funciona.</p>
-<h2>RASCUNHO - EXPLICAR PROGRAMAÇAO DINAMICA</h2>
-<h2>RASCUNHO - COMPLEXIDADE</h2>
-<h2>RASCUNHO - DESAFIO: MUDAR O CODIGO PARA IMPRIMIR AS STRINGS SEGMENTAS</h2>
-<p>–APAGAR–APAGAR–APAGAR–APAGAR–APAGAR–APAGAR–APAGAR–APAGAR–APAGAR</p>
-<h2>Subtítulo</h2>
-<p>Para criar um parágrafo, basta escrever um texto contínuo, sem pular linhas.</p>
-<p>Você também pode criar</p>
-<ol>
-<li>
-<p>listas;</p>
-</li>
-<li>
-<p>ordenadas,</p>
-</li>
-</ol>
-<p>assim como</p>
-<ul>
-<li>
-<p>listas;</p>
-</li>
-<li>
-<p>não-ordenadas</p>
-</li>
-</ul>
-<p>e imagens. Lembre que todas as imagens devem estar em uma subpasta <em>img</em>.</p>
-<figure class="img"><img src="img/logo.png" alt=""></figure>
-<p>Para tabelas, usa-se a <a href="https://fletcher.github.io/MultiMarkdown-6/syntax/tables.html" target="_blank">notação do
-MultiMarkdown</a>,
-que é muito flexível. Vale a pena abrir esse link para saber todas as
-possibilidades.</p>
-<figure class="table"><table>
-<thead>
-<tr>
-<th>coluna a</th>
-<th>coluna b</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>2</td>
-</tr>
-</tbody>
-</table></figure>
-<p>Ao longo de um texto, você pode usar <em>itálico</em>, <strong>negrito</strong>, <span class="md-colorify md-colorify--red">vermelho</span> e
-<kbd>tecla</kbd>. Também pode usar uma equação LaTeX: \(f(n) \leq g(n)\). Se for muito
-grande, você pode isolá-la em um parágrafo.</p>
-<p>\[\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq 1\]</p>
-<p>Para inserir uma animação, use <code class="language-md">:</code> seguido do nome de uma pasta onde as
-imagens estão. Essa pasta também deve estar em <em>img</em>.</p>
-<div class="animation"><img class="frame" src="img/bubble/bubble01.png" alt="1"><img class="frame" src="img/bubble/bubble02.png" alt="2"><img class="frame" src="img/bubble/bubble03.png" alt="3"><img class="frame" src="img/bubble/bubble04.png" alt="4"><img class="frame" src="img/bubble/bubble05.png" alt="5"><img class="frame" src="img/bubble/bubble06.png" alt="6"><img class="frame" src="img/bubble/bubble07.png" alt="7"><img class="frame" src="img/bubble/bubble08.png" alt="8"><img class="frame" src="img/bubble/bubble09.png" alt="9"><img class="frame" src="img/bubble/bubble10.png" alt="10"><img class="frame" src="img/bubble/bubble11.png" alt="11"><img class="frame" src="img/bubble/bubble12.png" alt="12"><img class="frame" src="img/bubble/bubble13.png" alt="13"><img class="frame" src="img/bubble/bubble14.png" alt="14"><img class="frame" src="img/bubble/bubble15.png" alt="15"><img class="frame" src="img/bubble/bubble16.png" alt="16"><img class="frame" src="img/bubble/bubble17.png" alt="17"><img class="frame" src="img/bubble/bubble18.png" alt="18"><img class="frame" src="img/bubble/bubble19.png" alt="19"><img class="frame" src="img/bubble/bubble20.png" alt="20"><img class="frame" src="img/bubble/bubble21.png" alt="21"><img class="frame" src="img/bubble/bubble22.png" alt="22"><img class="frame" src="img/bubble/bubble23.png" alt="23"><img class="frame" src="img/bubble/bubble24.png" alt="24"><img class="frame" src="img/bubble/bubble25.png" alt="25"><img class="frame" src="img/bubble/bubble26.png" alt="26"><img class="frame" src="img/bubble/bubble27.png" alt="27"><img class="frame" src="img/bubble/bubble28.png" alt="28"><img class="frame" src="img/bubble/bubble29.png" alt="29"><img class="frame" src="img/bubble/bubble30.png" alt="30"><img class="frame" src="img/bubble/bubble31.png" alt="31"><img class="frame" src="img/bubble/bubble32.png" alt="32"><img class="frame" src="img/bubble/bubble33.png" alt="33"><img class="frame" src="img/bubble/bubble34.png" alt="34"><img class="frame" src="img/bubble/bubble35.png" alt="35"><img class="frame" src="img/bubble/bubble36.png" alt="36"><img class="frame" src="img/bubble/bubble37.png" alt="37"><img class="frame" src="img/bubble/bubble38.png" alt="38"><img class="frame" src="img/bubble/bubble39.png" alt="39"><img class="frame" src="img/bubble/bubble40.png" alt="40"><img class="frame" src="img/bubble/bubble41.png" alt="41"><img class="frame" src="img/bubble/bubble42.png" alt="42"><img class="frame" src="img/bubble/bubble43.png" alt="43"><img class="frame" src="img/bubble/bubble44.png" alt="44"><img class="frame" src="img/bubble/bubble45.png" alt="45"><img class="frame" src="img/bubble/bubble46.png" alt="46"><img class="frame" src="img/bubble/bubble47.png" alt="47"><img class="frame" src="img/bubble/bubble48.png" alt="48"><img class="frame" src="img/bubble/bubble49.png" alt="49"><img class="frame" src="img/bubble/bubble50.png" alt="50"><img class="frame" src="img/bubble/bubble51.png" alt="51"><img class="frame" src="img/bubble/bubble52.png" alt="52"><img class="frame" src="img/bubble/bubble53.png" alt="53"><img class="frame" src="img/bubble/bubble54.png" alt="54"><img class="frame" src="img/bubble/bubble55.png" alt="55"><img class="frame" src="img/bubble/bubble56.png" alt="56"><img class="frame" src="img/bubble/bubble57.png" alt="57"><img class="frame" src="img/bubble/bubble58.png" alt="58"><img class="frame" src="img/bubble/bubble59.png" alt="59"><img class="frame" src="img/bubble/bubble60.png" alt="60"><img class="frame" src="img/bubble/bubble61.png" alt="61"><img class="frame" src="img/bubble/bubble62.png" alt="62"><img class="frame" src="img/bubble/bubble63.png" alt="63"><img class="frame" src="img/bubble/bubble64.png" alt="64"><img class="frame" src="img/bubble/bubble65.png" alt="65"><img class="frame" src="img/bubble/bubble66.png" alt="66"><img class="frame" src="img/bubble/bubble67.png" alt="67"><img class="frame" src="img/bubble/bubble68.png" alt="68"><img class="frame" src="img/bubble/bubble69.png" alt="69"><img class="frame" src="img/bubble/bubble70.png" alt="70"><img class="frame" src="img/bubble/bubble71.png" alt="71"></div>
-<p>Você também pode inserir código, inclusive especificando a linguagem.</p>
-<pre><code class="language-py">def f():
-    print('hello world')
+<p><strong>Algoritmo Recursivo</strong></p>
+<p>Agora que já sabemos as entradas e as saídas do algoritmo, vamos ver como o começo chega no fim.</p>
+<p>Para isso iremos utilizar o algoritmo recursivo. A ideia deste algoritmo é dividir a string original em substrings, e checar se cada uma delas é uma palavra ou não. Seguindo a seguinte ideia:</p>
+<p>Pegando a string “garrafadeagua”, o algoritmo faria:</p>
+<pre><code class="language-py">1 "g"
+2 "ga"
+3 "gar"
+4 "garr"
+5 "garra"
+6 "garraf"
+7 "garrafa"
+8 "garrafad"
+9 "garrafade"
+10 "garrafadea"
+11 "garrafadeag"
+12 "garrafadeagu"
+13 "garrafadeagua"
 </code></pre>
-<pre><code class="language-c">void f() {
-    printf("hello world\n");
-}
+<p>Como dito, a cada iteração o algoritmo checa se a substring é uma palavra do dicionário ou não. No caso, na iteração 8 o algoritmo encontra “garrafa” e recursiva o resto da string (“deagua”) para ver se forma uma palavra, da seguinte forma:</p>
+<pre><code class="language-py">1 "d"
+2 "de"
+3 "dea"
+4 "deag"
+5 "deagu"
+6 "deagua"
 </code></pre>
-<p>Se não especificar nenhuma, o código fica com colorização de terminal.</p>
-<pre><code class="terminal nohighlight">hello world
+<p>Seguindo a mesma lógica, na iteração 2, o algoritmo encontra a palavra “de”. E como a string ainda não acabou, recursiva o resto da string.</p>
+<pre><code class="language-py">1 "a"
+2 "ag"
+3 "agu"
+4 "agua"
 </code></pre>
-<blockquote class="warning">
-<p>Aviso</p>
-<p>Este é um exemplo de aviso, entre <code class="language-md">!!!</code>.</p>
-</blockquote>
+<p>Como a string acabou e o algoritmo achou a palavra “agua”. E como toda a string original pode ser dividida em “garrada”+“de”+“agua”, retorna <span class="md-colorify md-colorify--green">True</span>.</p>
+<p>Agora que já temos uma ideia do que o código irá fazer, como o codificamos?
+Para que conseguirmos entender melhor como o algorítmo irá funcionar vamos representá-los na forma escrita e dividí-los em partes.</p>
+<p>Primeiramente vamos entender o que essa primeira parte abaixo faz.</p>
+<pre><code class="language-py">1 funcao word_break(string):
+2    
+3    para cada posição da letra da string:
+4        Print(string[0:posição])
+</code></pre>
+<p>Nessa primeira interação existe um loop a qual irá pecorrer cada elemento da string sucessivamente.</p>
 <blockquote class="question">
-<p>Exercício</p>
-<p>Este é um exemplo de exercício, entre <code class="language-md">???</code>.</p>
+<p>Exercício 3</p>
+<p>Caso a entrada da função word_break fosse “tvplasma” qual seria a saída da função na linha 4 para cada interação no loop?</p>
 <details class="answer">
 <summary>Gabarito</summary>
-<p>Este é um exemplo de gabarito, entre <code class="language-md">:::</code>.</p>
+<pre><code class="language-py">1 "t"
+2 "tv"
+3 "tvp"
+4 "tvpl"
+5 "tvpla"
+6 "tvplas"
+7 "tvplasm"
+8 "tvplasma"
+</code></pre>
+</details>
+</blockquote>
+<blockquote class="question">
+<p>Exercício 4</p>
+<p>Agora que vc já entendeu melhor como o exercício funciona imagine que a entrada da função word_break fosse “garrafadeagua” qual seria a saída da função na linha 4 para cada interação no loop?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<pre><code class="language-py">1   "g"
+2   "ga"
+3   "gar"
+4   "garr"
+5   "garra"
+6   "garraf"
+7   "garrafa"
+8   "garrafad"
+9   "garrafade"
+10  "garrafadea"
+11  "garrafadeag"
+12  "garrafadeagu"
+13  "garrafadeagua"
+</code></pre>
+</details>
+</blockquote>
+<p>Agora para a segunda parte iremos adicionar como entrada um dicionário, que é um lista de palabras válidas, ou seja, um banco de dados. Além disso foi adicionado uma condição dentro do loop a qual só irá entrar caso a palavra exista dentro do banco de dados.</p>
+<pre><code class="language-py">1 funcao word_break(string, dicionario):
+2
+3    para cada posição da letra da string:
+4        caso string[0:posição] esteja no dicionário:
+5            Print(string[0:posição])
+</code></pre>
+<blockquote class="question">
+<p>Exercício 5</p>
+<p>Agora a entrada da função word_break será “tvplasma” e o dicionário será [“tv”, “plasma”] qual seria a saída da função na linha 5 para cada interação no loop?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<pre><code class="language-py">1 "tv"
+</code></pre>
+<p>Provavelmente você estranhou que o algorítimo não ter printado a palavra plasma nas suas interações. Volte para o exercício 3 e 4 e tente entender a causa disso.</p>
+<p>Exatamente! Por enquanto o código não está cortando as palavras existentes e por isso nunca pega a palavra plasma, mas palavras como tvp, tvpl, tvpla e assim por diante que não existem no banco de dados.</p>
+</details>
+</blockquote>
+<blockquote class="question">
+<p>Exercício 6</p>
+<p>Agora a entrada da função word_break será “garrafadeagua” e o dicionário será [“garrafa”, “de”, “agua”] qual seria a saída da função na linha 5 para cada interação no loop?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<pre><code class="language-py">1 "garrafa"
+</code></pre>
+</details>
+</blockquote>
+<p>Provavelmente você já deve se ter perguntado aonde está a parte que transforma esse código em recursiva. Muito bem, finalmente iremos usar esse recurso, e é com ele que iremos relsolver o problema dos exercícios anterios, a quebra da string quando uma palavra já foi identificada no loop.</p>
+<p>Na terceira parte iremos adicionar a chamada recursiva dentro da primeira condição a qual já foi implementada antes, porém iremos mandar o resto da string que não foi verificada se existe no banco de dados ou não, e dentro dessa condição iremos devolver true, ou seja, a string pode ser repartida e caso o loop acabe será devolvido false, dessa forma declarando que a string não pode ser repartida.</p>
+<p>Como a gente está rodando um código recursivo, nós devemos por uma condição de parada se não ele rodará em um “loop infinito”. A condição seria quando o tamanho da string fosse 0, dessa forma devolvendo true.</p>
+<pre><code class="language-py">1 funcao word_break(string, dicionario):
+2    se string estiver vazia devolve true # Condição para retirar a recursão do "Loop infinito"
+3
+4    para cada posição da letra da string:
+5        caso string[0:posição] esteja no dicionário:
+6        
+7            caso word_break(string[posição:], dicionario): # Verifica se o resto da string é segmentada de forma recursiva
+9                devolve true
+10    
+11    devolve false
+</code></pre>
+<blockquote class="question">
+<p>Exercício 6</p>
+<p>Você consegue explicar o porque esse algorítmo já consegue verificar se a string realmente consegue ser repartida ou não ?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<p>Vamos imaginar que a string de entrada seja “tvplasma” e o dicionário seja ["tv, “plasma”].
+Quando o código entrar na primeira condição, ou seja quando ele afirmar que “tv” é uma palavra que exista no banco de dados, o resto da string, ou seja, “plasma”, que vem logo após “tv”, será enviado para a recursão da função verificando que “plasma” também exite no banco de dados devolvendo true.</p>
+</details>
+</blockquote>
+<blockquote class="question">
+<p>Exercício 7</p>
+<p>Imagine agora que as entradas das funções vão ser “garrafadeagua” e o dicionário seja [“garrafa”, “agua”] qual seria a saída ?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<pre><code class="language-py">1 False
+</code></pre>
+<p>Você poderia pensar que a string pode sim ser seguimentada em “garrafa de agua” e de fato você tem toda a razão, porém o banco de dados fornecidos ao agorítimo não possui a palavra de, dessa forma ela não consegue seguimentá-la.</p>
+</details>
+</blockquote>
+<p>Logo em seguida iremos por o código implementado no python para uma melhor compreensão.</p>
+<pre><code class="language-py">1 def word_break(string, dicionario):
+2    if len(string) == 0:
+3        return True
+4    
+5    for i in range(1, n + 1):
+6        if string[0: i] in dicionario and word_break(string[i: n], dicionario):
+7            return True
+8
+9    return False
+</code></pre>
+<blockquote class="question">
+<p>Exercício 8</p>
+<p>Você saberia dizer qual é a complexidade do algoritmo de recursão?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<p>\(O(2^n)\)</p>
+</details>
+</blockquote>
+<p><strong>Programação Dinâmica</strong></p>
+<p><strong>O que é?</strong>
+É um método de otimização de algoritmos que é uma espécie de um algoritmo de recursão com o apoio de uma tabela. Ou seja, a programação dinâmica, guarda os resultados dos subproblemas encontrados durante a recursão, para não ser preciso calcular novamente.</p>
+<p><strong>Como isso se aplica ao nosso problema</strong>
+O problema do algoritmo recursivo é a sua complexidade. Podemos suavizá-la implementando a programação dinâmica, já que, por salvar os resultados dos subproblemas, ele não precisa calcular novamente, o que acaba tornando-o mais rápido.</p>
+<p>Agora para entendermos melhor a lógica da programação dinâmica, realizaremos ela passo a passo no código.</p>
+<p>Para começar precisamos iniciar uma lista que possua o tamanho da string + 1 e todos os seus elementos iram apresentar o valor <span class="md-colorify md-colorify--red">False</span>, menos o seu primeiro valor.</p>
+<p>Nós utilizamos essa lista para que o programa consiga identificar as palavras que já foram segmentadas antes (fará mais sentido mais a frente), o primeiro elemento dessa lista vai começar como <span class="md-colorify md-colorify--green">True</span>, pois uma string vazia sempre vai poder ser segmentada.</p>
+<pre><code class="language-py">1 funcao word_break(string):
+2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
+3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
+</code></pre>
+<p>O segundo passo é adicionar um loop e ele irá pecorrer cada letra da string</p>
+<pre><code class="language-py">1 funcao word_break(string):
+2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
+3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
+4
+5    para todo i no tamanho da string + 1:
+6        Print(string[i])
+</code></pre>
+<blockquote class="question">
+<p>Exercício 9</p>
+<p>Imagine que a entrada da função seja “tvplasma” qual seria a saída ?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<pre><code class="language-py">1 "t"
+2 "v"
+3 "p"
+4 "l"
+5 "a"
+6 "s"
+7 "m"
+8 "a"
+</code></pre>
+</details>
+</blockquote>
+<p>Na terceira parte iremos adicionar um outro loop dentro do loop que já tinha sido implementado antes a qual irá pecorrer cada número em relação ao i do loop externo.</p>
+<pre><code class="language-py">1 funcao word_break(string):
+2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
+3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
+4
+5    para todo i no tamanho da string + 1:
+6        para todo j em i:
+7            Print(string[j:i])
+</code></pre>
+<blockquote class="question">
+<p>Exercício 10</p>
+<p>Sendo a entrada “tvplasma” e o dicionário [“tv”, “plasma”], qual seria a saída ?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<pre><code class="language-py">t
+tv
+v
+tvp
+vp
+p
+tvpl
+vpl
+pl
+l
+tvpla
+vpla
+pla
+la
+a
+tvplas
+vplas
+plas
+las
+as
+s
+tvplasm
+vplasm
+plasm
+lasm
+asm
+sm
+m
+tvplasma
+vplasma
+plasma
+lasma
+asma
+sma
+ma
+a
+</code></pre>
+</details>
+</blockquote>
+<p>Iremos acrescentar uma nova entrada para a função, o dicionário, dessa forma também adicionaremos uma condição dentro do loop interno. Caso a string que comece em j e vai até o i pertence ao dicionário entre nessa condição</p>
+<pre><code class="language-py">1 funcao word_break(string, dicionario):
+2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
+3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
+4
+5    para todo i no tamanho da string + 1:
+6        para todo j em i:
+7            se string[j:i] pertece ao dicionario:
+8                Print(string[j:i])
+</code></pre>
+<blockquote class="question">
+<p>Exercício 11</p>
+<p>Agora para essa função com a entrada de “tvplasma” e o dicionário [“tv”, “plasma”] qual seria a saída ?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<pre><code class="language-py">1 tv
+2 plasma
+</code></pre>
+</details>
+</blockquote>
+<p>Como já foi percebido no exercício anterior o algorítimo já está conseguindo quebrar a string, porém ele ainda não consegue identificar se a string realmente pode ser seguimentada ou não.</p>
+<p>Para que ele consiga fazer essa proeza nós finalmente vamos utilizar a lista inicializada anteriormente. Primeiro vamos por uma condição adjunto com o outro, que só irá entrar nessa condição caso o valor da lista dp na posição j (do loop interno) for <span class="md-colorify md-colorify--green">True</span>, caso ele consiga ter as duas condições realizadas, vamos por verdadeira na lista a condição <span class="md-colorify md-colorify--green">True</span> na posição i e depois do loop iremos devolver o último elemento da lista.</p>
+<p>Nós fazemos todas essas condições pois na lista dp ela irá marcar como <span class="md-colorify md-colorify--green">True</span> o início e o fim de uma palavra válida então caso a string consiga ser sedimentada ela sempre irá apresentar true no último elemento, pois será a marcação do fim da última string encontrada e caso não encontre tal palavra o último elemento será <span class="md-colorify md-colorify--red">False</span>.</p>
+<pre><code class="language-py">1 funcao word_break(string, dicionario):
+2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
+3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
+4
+5    para todo i no tamanho da string + 1:
+6        para todo j em i:
+7            se dp[j] e string[j:i] pertece ao dicionario:
+8                dp[i] recebe true
+9                quebra o loop interno
+10    
+11   devolve o último elemento da lista dp
+</code></pre>
+<blockquote class="question">
+<p>Exercício 11</p>
+<p>Agora para essa função com a entrada de “tvplasma” e o dicionário [“tv”, “plasma”] qual seria a saída ?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<pre><code class="language-py">1 True
+</code></pre>
+</details>
+</blockquote>
+<p>Segue o código em python para que seja mais fácil a compreensão</p>
+<pre><code class="language-py">def wordBreak(string, dictionary):
+     
+    # create a dp table to store results of subproblems
+    # value of dp[i] will be true if string string can be segmented
+    # into dictionary words from 0 to i.
+    dp = [False for i in range(len(string) + 1)]
+ 
+    # dp[0] is true because an empty string can always be segmented.
+    dp[0] = True
+ 
+    for i in range(len(string) + 1):
+        for j in range(i):
+            if dp[j] and string[j:i] in dictionary:
+                dp[i] = True
+                break
+     
+    return dp[len(string)]
+</code></pre>
+<p>A seguir temos uma breve animação do algoritmo para um maior entendimento:</p>
+<div class="animation"><img class="frame" src="img/dinamo/dinamo01.png" alt="1"><img class="frame" src="img/dinamo/dinamo02.png" alt="2"><img class="frame" src="img/dinamo/dinamo03.png" alt="3"><img class="frame" src="img/dinamo/dinamo04.png" alt="4"><img class="frame" src="img/dinamo/dinamo05.png" alt="5"><img class="frame" src="img/dinamo/dinamo06.png" alt="6"><img class="frame" src="img/dinamo/dinamo07.png" alt="7"><img class="frame" src="img/dinamo/dinamo08.png" alt="8"><img class="frame" src="img/dinamo/dinamo09.png" alt="9"><img class="frame" src="img/dinamo/dinamo10.png" alt="10"><img class="frame" src="img/dinamo/dinamo11.png" alt="11"><img class="frame" src="img/dinamo/dinamo12.png" alt="12"><img class="frame" src="img/dinamo/dinamo13.png" alt="13"><img class="frame" src="img/dinamo/dinamo14.png" alt="14"><img class="frame" src="img/dinamo/dinamo15.png" alt="15"><img class="frame" src="img/dinamo/dinamo16.png" alt="16"><img class="frame" src="img/dinamo/dinamo17.png" alt="17"><img class="frame" src="img/dinamo/dinamo18.png" alt="18"><img class="frame" src="img/dinamo/dinamo19.png" alt="19"><img class="frame" src="img/dinamo/dinamo20.png" alt="20"><img class="frame" src="img/dinamo/dinamo21.png" alt="21"><img class="frame" src="img/dinamo/dinamo22.png" alt="22"><img class="frame" src="img/dinamo/dinamo23.png" alt="23"><img class="frame" src="img/dinamo/dinamo24.png" alt="24"><img class="frame" src="img/dinamo/dinamo25.png" alt="25"><img class="frame" src="img/dinamo/dinamo26.png" alt="26"><img class="frame" src="img/dinamo/dinamo27.png" alt="27"><img class="frame" src="img/dinamo/dinamo28.png" alt="28"><img class="frame" src="img/dinamo/dinamo29.png" alt="29"><img class="frame" src="img/dinamo/dinamo30.png" alt="30"><img class="frame" src="img/dinamo/dinamo9.png" alt="31"></div>
+<blockquote class="question">
+<p>Exercício</p>
+<p>Você saberia dizer qual é a complexidade do algoritmo de programação dinâmica?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<p>\(O(n^2)\)</p>
 </details>
 </blockquote>
 
