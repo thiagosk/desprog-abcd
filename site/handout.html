@@ -27,9 +27,9 @@
 <h1>Algoritmo de Programação Dinâmica para o Problema da Quebra em Palavras</h1>
 <h2>Problema</h2>
 <p><strong>Qual a o problema?</strong></p>
-<p>O problema da quebra em palavras consiste que dado um conjunto de palavras sem espaço, descobrir se esse mesmo conjunto de palavras pode ser separado por espaços ou não.</p>
+<p>O problema da quebra em palavras consiste em dado um conjunto de palavras sem espaço, descobrir se esse mesmo conjunto de palavras pode ser separado por espaços ou não.</p>
 <p><strong>Onde se encontra?</strong></p>
-<p>Esse problema se encontra em grandes mecanismos de busca como o Google, Bing, Yahoo e em entrevistas de emprego para as grandes empresas de tecnologia, como o Google.</p>
+<p>Esse problema se encontra em grandes mecanismos de busca como o Google, Bing, Amazon e em entrevistas de emprego para as grandes empresas de tecnologia, como o Google.</p>
 <p><strong>Qual a importância de solucionar esse problema?</strong></p>
 <blockquote class="question">
 <p>Exercício 1</p>
@@ -68,7 +68,7 @@ Há diferença entre as respostas?</p>
 <p>Aviso</p>
 <p>Por simplicidade iremos retornar apenas um boolean, mas facilmente poderiamos alterar o código para retornar as possíveis segmentações da string em espaço.</p>
 </blockquote>
-<p><strong>Prática</strong></p>
+<h2>Prática</h2>
 <p>Dado a seguinte lista de palavras:</p>
 <pre><code class="language-py">[de, garrafa, agua, monitor, camisa, bordada]
 </code></pre>
@@ -93,9 +93,8 @@ True
 <p>“camisaxadrez” retorna <span class="md-colorify md-colorify--red">False</span>, pois no banco de dados não há a palavra “xadrez”, apesar de ter “camisa”.</p>
 </details>
 </blockquote>
-<p><strong>Algoritmo Recursivo</strong></p>
 <p>Agora que já sabemos as entradas e as saídas do algoritmo, vamos ver como o começo chega no fim.</p>
-<p>Para isso iremos utilizar o algoritmo recursivo. A ideia deste algoritmo é dividir a string original em substrings, e checar se cada uma delas é uma palavra ou não. Seguindo a seguinte ideia:</p>
+<p>Para isso iremos utilizar um algoritmo, cuja ideia seja dividir a string original em substrings, e checar se cada uma delas é uma palavra ou não. Seguindo a seguinte ideia:</p>
 <p>Pegando a string “garrafadeagua”, o algoritmo faria:</p>
 <pre><code class="language-py">1 "g"
 2 "ga"
@@ -111,7 +110,7 @@ True
 12 "garrafadeagu"
 13 "garrafadeagua"
 </code></pre>
-<p>Como dito, a cada iteração o algoritmo checa se a substring é uma palavra do dicionário ou não. No caso, na iteração 8 o algoritmo encontra “garrafa” e recursiva o resto da string (“deagua”) para ver se forma uma palavra, da seguinte forma:</p>
+<p>Como dito, a cada iteração o algoritmo checa se a substring é uma palavra do dicionário ou não. No caso, na iteração 8 o algoritmo encontra “garrafa” e agora irá checar o resto da string (“deagua”) para ver se forma uma palavra, da seguinte forma:</p>
 <pre><code class="language-py">1 "d"
 2 "de"
 3 "dea"
@@ -119,15 +118,31 @@ True
 5 "deagu"
 6 "deagua"
 </code></pre>
-<p>Seguindo a mesma lógica, na iteração 2, o algoritmo encontra a palavra “de”. E como a string ainda não acabou, recursiva o resto da string.</p>
+<blockquote class="question">
+<p>Exercício 3</p>
+<p>O algortimo acharia alguma palavra nesse processo? Se sim, em qual linha e como ficaria as iterações do resto da string para achar outra palavra?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<p>Na linha 2. Agora o algoritmo começaria a checar o resto da string por outra palavra.</p>
 <pre><code class="language-py">1 "a"
 2 "ag"
 3 "agu"
 4 "agua"
 </code></pre>
 <p>Como a string acabou e o algoritmo achou a palavra “agua”. E como toda a string original pode ser dividida em “garrada”+“de”+“agua”, retorna <span class="md-colorify md-colorify--green">True</span>.</p>
-<p>Agora que já temos uma ideia do que o código irá fazer, como o codificamos?
-Para que conseguirmos entender melhor como o algorítmo irá funcionar vamos representá-los na forma escrita e dividí-los em partes.</p>
+</details>
+</blockquote>
+<blockquote class="question">
+<p>Exercício 4</p>
+<p>Qual método que a gente aprendeu em Desafios de Programação que segue a lógica feita acima?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<p>O método de recursão!</p>
+<p>O algoritmo de recursão permite checarmos a string por uma palavra e quando a encontramos, recursamos o resto da string, e acaba quando chega no seu fim.</p>
+</details>
+</blockquote>
+<p>Agora que já temos uma ideia do que o código irá fazer e qual algoritmo iremos usar, como o codificamos?
+Para conseguirmos entender melhor como o algoritmo irá funcionar vamos representá-los na forma escrita e dividí-los em partes.</p>
 <p>Primeiramente vamos entender o que essa primeira parte abaixo faz.</p>
 <pre><code class="language-py">1 funcao word_break(string):
 2    
@@ -136,7 +151,7 @@ Para que conseguirmos entender melhor como o algorítmo irá funcionar vamos rep
 </code></pre>
 <p>Nessa primeira interação existe um loop a qual irá pecorrer cada elemento da string sucessivamente.</p>
 <blockquote class="question">
-<p>Exercício 3</p>
+<p>Exercício 5</p>
 <p>Caso a entrada da função word_break fosse “tvplasma” qual seria a saída da função na linha 4 para cada interação no loop?</p>
 <details class="answer">
 <summary>Gabarito</summary>
@@ -151,28 +166,7 @@ Para que conseguirmos entender melhor como o algorítmo irá funcionar vamos rep
 </code></pre>
 </details>
 </blockquote>
-<blockquote class="question">
-<p>Exercício 4</p>
-<p>Agora que vc já entendeu melhor como o exercício funciona imagine que a entrada da função word_break fosse “garrafadeagua” qual seria a saída da função na linha 4 para cada interação no loop?</p>
-<details class="answer">
-<summary>Gabarito</summary>
-<pre><code class="language-py">1   "g"
-2   "ga"
-3   "gar"
-4   "garr"
-5   "garra"
-6   "garraf"
-7   "garrafa"
-8   "garrafad"
-9   "garrafade"
-10  "garrafadea"
-11  "garrafadeag"
-12  "garrafadeagu"
-13  "garrafadeagua"
-</code></pre>
-</details>
-</blockquote>
-<p>Agora para a segunda parte iremos adicionar como entrada um dicionário, que é um lista de palabras válidas, ou seja, um banco de dados. Além disso foi adicionado uma condição dentro do loop a qual só irá entrar caso a palavra exista dentro do banco de dados.</p>
+<p>Agora para a segunda parte iremos adicionar como entrada um dicionário, que é um lista de palavras válidas, ou seja, um banco de dados. Além disso foi adicionado uma condição dentro do loop a qual só irá entrar caso a palavra exista dentro do banco de dados.</p>
 <pre><code class="language-py">1 funcao word_break(string, dicionario):
 2
 3    para cada posição da letra da string:
@@ -181,25 +175,16 @@ Para que conseguirmos entender melhor como o algorítmo irá funcionar vamos rep
 </code></pre>
 <blockquote class="question">
 <p>Exercício 5</p>
-<p>Agora a entrada da função word_break será “tvplasma” e o dicionário será [“tv”, “plasma”] qual seria a saída da função na linha 5 para cada interação no loop?</p>
+<p>Agora a entrada da função word_break será “tvplasma” e o dicionário será [“tv”, “plasma”] o que seria printado na linha 5 em cada interação no loop?</p>
 <details class="answer">
 <summary>Gabarito</summary>
 <pre><code class="language-py">1 "tv"
 </code></pre>
 <p>Provavelmente você estranhou que o algorítimo não ter printado a palavra plasma nas suas interações. Volte para o exercício 3 e 4 e tente entender a causa disso.</p>
-<p>Exatamente! Por enquanto o código não está cortando as palavras existentes e por isso nunca pega a palavra plasma, mas palavras como tvp, tvpl, tvpla e assim por diante que não existem no banco de dados.</p>
+<p>Exatamente! Por enquanto o código não está cortando as palavras existentes e por isso nunca pega a palavra plasma, mas palavras como “tvp”, “tvpl”, “tvpla” e assim por diante que não existem no banco de dados.</p>
 </details>
 </blockquote>
-<blockquote class="question">
-<p>Exercício 6</p>
-<p>Agora a entrada da função word_break será “garrafadeagua” e o dicionário será [“garrafa”, “de”, “agua”] qual seria a saída da função na linha 5 para cada interação no loop?</p>
-<details class="answer">
-<summary>Gabarito</summary>
-<pre><code class="language-py">1 "garrafa"
-</code></pre>
-</details>
-</blockquote>
-<p>Provavelmente você já deve se ter perguntado aonde está a parte que transforma esse código em recursiva. Muito bem, finalmente iremos usar esse recurso, e é com ele que iremos relsolver o problema dos exercícios anterios, a quebra da string quando uma palavra já foi identificada no loop.</p>
+<p>Provavelmente você já deve se ter perguntado aonde está a parte que transforma esse código em recursiva. Muito bem, finalmente iremos usar esse recurso, e é com ele que iremos resolver o problema do exercício anterio, a quebra da string quando uma palavra já foi identificada no loop.</p>
 <p>Na terceira parte iremos adicionar a chamada recursiva dentro da primeira condição a qual já foi implementada antes, porém iremos mandar o resto da string que não foi verificada se existe no banco de dados ou não, e dentro dessa condição iremos devolver true, ou seja, a string pode ser repartida e caso o loop acabe será devolvido false, dessa forma declarando que a string não pode ser repartida.</p>
 <p>Como a gente está rodando um código recursivo, nós devemos por uma condição de parada se não ele rodará em um “loop infinito”. A condição seria quando o tamanho da string fosse 0, dessa forma devolvendo true.</p>
 <pre><code class="language-py">1 funcao word_break(string, dicionario):
@@ -229,7 +214,7 @@ Quando o código entrar na primeira condição, ou seja quando ele afirmar que �
 <summary>Gabarito</summary>
 <pre><code class="language-py">1 False
 </code></pre>
-<p>Você poderia pensar que a string pode sim ser seguimentada em “garrafa de agua” e de fato você tem toda a razão, porém o banco de dados fornecidos ao agorítimo não possui a palavra de, dessa forma ela não consegue seguimentá-la.</p>
+<p>Você poderia pensar que a string pode sim ser seguimentada em “garrafa de agua” e de fato você tem toda a razão, porém o banco de dados fornecido ao algoritimo não possui a palavra “de”, dessa forma ela não consegue seguimentá-la.</p>
 </details>
 </blockquote>
 <p>Logo em seguida iremos por o código implementado no python para uma melhor compreensão.</p>
