@@ -1,0 +1,34 @@
+??? Exercício 4
+
+Voltando agora para a **primeira** iteração da string "garrafadeagua", por que o algoritmo continua depois de ter achado uma palavra, no caso "garrafa"?
+
+::: Gabarito
+Para checar se existe uma palavra maior que inclua "garrafa".
+Nesse caso não existe, mas veja o próximo exercício.
+:::
+???
+
+??? Exercício 5
+
+Dado a string "monitoramentoambiental" e o dicionário ["garrafa", "monitor", "ambiental", "ligado", "monitoramento", "agua", "amento"], quais seriam as possíveis strings?
+
+::: Gabarito
+"monitor amento ambiental" e "monitoramento ambiental"
+
+Primeiro se acharia "monitor", depois iteraria "amentoambiental" e acharia "amento", e por fim iteraria "ambiental" e acharia "ambiental".
+
+Depois o algoritmo voltaria para a primeira iteração e continuaria para achar "monitoramento ambiental":
+```` py
+1 "monitor"
+2 "monitora" # continua daqui
+3 "monitoram"
+4 "monitorame"
+5 "monitoramen"
+6 "monitorament"
+7 "monitoramento" # vai começar a iterar "ambiental" aqui
+8 "monitoramentoa"
+9 "monitoramentoam"
+10 ...
+````
+:::
+???

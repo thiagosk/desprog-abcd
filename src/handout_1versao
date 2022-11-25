@@ -95,9 +95,11 @@ O mesmo para "monitor" e "camisabordada".
 
 ???
 
+**Algoritmo Recursivo**
+
 Agora que já sabemos as entradas e as saídas do algoritmo, vamos ver como o começo chega no fim.
 
-Para isso iremos utilizar um algoritmo, cuja ideia seja dividir a string original em substrings, e checar se cada uma delas é uma palavra ou não. Seguindo a seguinte ideia:
+Para isso iremos utilizar o algoritmo recursivo. A ideia deste algoritmo é dividir a string original em substrings, e checar se cada uma delas é uma palavra ou não. Seguindo a seguinte ideia:
 
 Pegando a string "garrafadeagua", o algoritmo faria:
 
@@ -117,7 +119,7 @@ Pegando a string "garrafadeagua", o algoritmo faria:
 13 "garrafadeagua"
 ```
 
-Como dito, a cada iteração o algoritmo checa se a substring é uma palavra do dicionário ou não. No caso, na iteração 7 o algoritmo encontra "garrafa" e agora irá checar o resto da string ("deagua") para ver se forma uma palavra, da seguinte forma:
+Como dito, a cada iteração o algoritmo checa se a substring é uma palavra do dicionário ou não. No caso, na iteração 8 o algoritmo encontra "garrafa" e recursiva o resto da string ("deagua") para ver se forma uma palavra, da seguinte forma:
 
 ``` py
 1 "d"
@@ -128,35 +130,19 @@ Como dito, a cada iteração o algoritmo checa se a substring é uma palavra do 
 6 "deagua"
 ```
 
-??? Exercício 3
+Seguindo a mesma lógica, na iteração 2, o algoritmo encontra a palavra "de". E como a string ainda não acabou, recursiva o resto da string.
 
-O algortimo acharia alguma palavra nesse processo? Se sim, em qual linha e como ficaria as iterações do resto da string para achar outra palavra?
-
-::: Gabarito
-Na linha 2 é encontrado a palavra "de". Agora o algoritmo começaria a checar o resto da substring por outra palavra.
-```` py
+``` py
 1 "a"
 2 "ag"
 3 "agu"
 4 "agua"
-````
+```
+
 Como a string acabou e o algoritmo achou a palavra "agua". E como toda a string original pode ser dividida em "garrada"+"de"+"agua", retorna {green}(True).
-:::
-???
 
-??? Exercício 6
-
-Qual método que a gente aprendeu em Desafios de Programação que segue a lógica de iteração feita acima?
-
-::: Gabarito
-O método de recursão!
-
-O algoritmo de recursão permite checarmos a string por uma palavra e quando a encontramos, recursamos o resto da string, e acaba quando chega no seu fim.
-:::
-???
-
-Agora que já temos uma ideia do que o código irá fazer e qual algoritmo iremos usar, como o codificamos?
-Para conseguirmos entender melhor como o algoritmo irá funcionar vamos representá-los na forma escrita e dividí-los em partes.
+Agora que já temos uma ideia do que o código irá fazer, como o codificamos?
+Para que conseguirmos entender melhor como o algorítmo irá funcionar vamos representá-los na forma escrita e dividí-los em partes.
 
 Primeiramente vamos entender o que essa primeira parte abaixo faz.
 
@@ -169,7 +155,7 @@ Primeiramente vamos entender o que essa primeira parte abaixo faz.
 
 Nessa primeira interação existe um loop a qual irá pecorrer cada elemento da string sucessivamente. 
 
-??? Exercício 5
+??? Exercício 3
 
 Caso a entrada da função word_break fosse "tvplasma" qual seria a saída da função na linha 4 para cada interação no loop?
 ::: Gabarito
@@ -186,6 +172,28 @@ Caso a entrada da função word_break fosse "tvplasma" qual seria a saída da fu
 :::
 ???
 
+??? Exercício 4
+
+Agora que vc já entendeu melhor como o exercício funciona imagine que a entrada da função word_break fosse "garrafadeagua" qual seria a saída da função na linha 4 para cada interação no loop?
+::: Gabarito
+```` py
+1   "g"
+2   "ga"
+3   "gar"
+4   "garr"
+5   "garra"
+6   "garraf"
+7   "garrafa"
+8   "garrafad"
+9   "garrafade"
+10  "garrafadea"
+11  "garrafadeag"
+12  "garrafadeagu"
+13  "garrafadeagua"
+````
+:::
+???
+
 Agora para a segunda parte iremos adicionar como entrada um dicionário, que é um lista de palavras válidas, ou seja, um banco de dados. Além disso foi adicionado uma condição dentro do loop a qual só irá entrar caso a palavra exista dentro do banco de dados.
 ``` py
 1 funcao word_break(string, dicionario):
@@ -197,7 +205,7 @@ Agora para a segunda parte iremos adicionar como entrada um dicionário, que é 
 
 ??? Exercício 5
 
-Agora a entrada da função word_break será "tvplasma" e o dicionário será ["tv", "plasma"] o que seria printado na linha 5 em cada interação no loop?
+Agora a entrada da função word_break será "tvplasma" e o dicionário será ["tv", "plasma"] qual seria a saída da função na linha 5 para cada interação no loop?
 ::: Gabarito
 
 ``` py
@@ -206,11 +214,22 @@ Agora a entrada da função word_break será "tvplasma" e o dicionário será ["
 
 Provavelmente você estranhou que o algorítimo não ter printado a palavra plasma nas suas interações. Volte para o exercício 3 e 4 e tente entender a causa disso.
 
-Exatamente! Por enquanto o código não está cortando as palavras existentes e por isso nunca pega a palavra plasma, mas palavras como "tvp", "tvpl", "tvpla" e assim por diante que não existem no banco de dados.
+Exatamente! Por enquanto o código não está cortando as palavras existentes e por isso nunca pega a palavra plasma, mas palavras como tvp, tvpl, tvpla e assim por diante que não existem no banco de dados.
 :::
 ???
 
-Provavelmente você já deve se ter perguntado aonde está a parte que transforma esse código em recursiva. Muito bem, finalmente iremos usar esse recurso, e é com ele que iremos resolver o problema do exercício anterio, a quebra da string quando uma palavra já foi identificada no loop.
+??? Exercício 6
+
+Agora a entrada da função word_break será "garrafadeagua" e o dicionário será ["garrafa", "de", "agua"] qual seria a saída da função na linha 5 para cada interação no loop?
+::: Gabarito
+
+``` py
+1 "garrafa"
+```
+:::
+???
+
+Provavelmente você já deve se ter perguntado aonde está a parte que transforma esse código em recursiva. Muito bem, finalmente iremos usar esse recurso, e é com ele que iremos relsolver o problema dos exercícios anterios, a quebra da string quando uma palavra já foi identificada no loop.
 
 Na terceira parte iremos adicionar a chamada recursiva dentro da primeira condição a qual já foi implementada antes, porém iremos mandar o resto da string que não foi verificada se existe no banco de dados ou não, e dentro dessa condição iremos devolver true, ou seja, a string pode ser repartida e caso o loop acabe será devolvido false, dessa forma declarando que a string não pode ser repartida.
 
@@ -233,8 +252,10 @@ Como a gente está rodando um código recursivo, nós devemos por uma condição
 
 Você consegue explicar o porque esse algorítmo já consegue verificar se a string realmente consegue ser repartida ou não ?
 ::: Gabarito
+
 Vamos imaginar que a string de entrada seja "tvplasma" e o dicionário seja ["tv, "plasma"].
 Quando o código entrar na primeira condição, ou seja quando ele afirmar que "tv" é uma palavra que exista no banco de dados, o resto da string, ou seja, "plasma", que vem logo após "tv", será enviado para a recursão da função verificando que "plasma" também exite no banco de dados devolvendo true.
+
 :::
 ???
 
@@ -245,7 +266,8 @@ Imagine agora que as entradas das funções vão ser "garrafadeagua" e o dicion�
 ``` py
 1 False
 ```
-Você poderia pensar que a string pode sim ser seguimentada em "garrafa de agua" e de fato você tem toda a razão, porém o banco de dados fornecido ao algoritimo não possui a palavra "de", dessa forma ela não consegue seguimentá-la.
+Você poderia pensar que a string pode sim ser seguimentada em "garrafa de agua" e de fato você tem toda a razão, porém o banco de dados fornecidos ao agorítimo não possui a palavra de, dessa forma ela não consegue seguimentá-la.
+
 :::
 ???
 
