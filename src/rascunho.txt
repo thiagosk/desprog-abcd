@@ -32,3 +32,9 @@ Depois o algoritmo voltaria para a primeira iteração e continuaria para achar 
 ````
 :::
 ???
+
+
+Então essa é a grande ideia do algoritmo,
+
+ele recebe uma string (conjunto de palavras sem espaço) e uma lista de strings (dicionario),
+e pega cada parte da string e checa se é uma palavra do dicionario.
