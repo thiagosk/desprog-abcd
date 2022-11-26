@@ -26,7 +26,7 @@
 <p>Handout criado por Pedro Andrade, Willian Kenzo e Thiago Kawahara</p>
 <h1>Algoritmo de Programação Dinâmica para o Problema da Quebra em Palavras</h1>
 <h2>Problema</h2>
-<p><strong>Qual a o problema?</strong></p>
+<p><strong>Qual o problema?</strong></p>
 <p>O problema da quebra em palavras consiste em dado um conjunto de palavras sem espaço, descobrir se esse mesmo conjunto de palavras pode ser separado por espaços ou não.</p>
 <p><strong>Onde se encontra?</strong></p>
 <p>Esse problema se encontra em grandes mecanismos de busca como o Google, Bing, Amazon e em entrevistas de emprego para as grandes empresas de tecnologia, como o Google.</p>
@@ -218,7 +218,7 @@ Para um melhor entendimento vamos representá-los na forma escrita e dividí-los
 <blockquote class="question">
 <p>Exercício 9</p>
 <p>Agora que já temos praticamente a ideia e o código entendidos.</p>
-<p>Com a string de entrada “tvplasma” e o dicionário ["tv, “plasma”]. Você consegue explicar como esse algorítmo verificar se a string realmente consegue ser repartida ou não?</p>
+<p>Com a string de entrada “tvplasma” e o dicionário ["tv, “plasma”]. Você consegue explicar como esse algorítmo verifica se a string realmente consegue ser repartida ou não?</p>
 <details class="answer">
 <summary>Gabarito</summary>
 <p>Quando o código entrar na primeira condição, ou seja quando ele afirmar que “tv” é uma palavra que exista no banco de dados, o resto da string, ou seja, “plasma”, que vem logo após “tv”, será enviado para a recursão da função verificando que “plasma” também existe no banco de dados devolvendo true.</p>
@@ -255,10 +255,10 @@ Para um melhor entendimento vamos representá-los na forma escrita e dividí-los
 </details>
 </blockquote>
 <p><strong>Programação Dinâmica</strong></p>
-<p><strong>O que é?</strong>
-É um método de otimização de algoritmos que é uma espécie de um algoritmo de recursão com o apoio de uma tabela. Ou seja, a programação dinâmica, guarda os resultados dos subproblemas encontrados durante a recursão, para não ser preciso calcular novamente.</p>
-<p><strong>Como isso se aplica ao nosso problema</strong>
-O problema do algoritmo recursivo é a sua complexidade. Podemos suavizá-la implementando a programação dinâmica, já que, por salvar os resultados dos subproblemas, ele não precisa calcular novamente, o que acaba tornando-o mais rápido.</p>
+<p><strong>O que é?</strong></p>
+<p>É um método de otimização de algoritmos que é uma espécie de um algoritmo de recursão com o apoio de uma tabela. Ou seja, a programação dinâmica, guarda os resultados dos subproblemas encontrados durante a recursão, para não ser preciso calcular novamente.</p>
+<p><strong>Como isso se aplica ao nosso problema?</strong></p>
+<p>O problema do algoritmo recursivo é a sua complexidade. Podemos suavizá-la implementando a programação dinâmica, já que, por salvar os resultados dos subproblemas, ele não precisa calcular novamente, o que acaba tornando-o mais rápido.</p>
 <p>Agora para entendermos melhor a lógica da programação dinâmica, realizaremos ela passo a passo no código.</p>
 <p>Para começar precisamos iniciar uma lista que possua o tamanho da string + 1 e todos os seus elementos iram apresentar o valor <span class="md-colorify md-colorify--red">False</span>, menos o seu primeiro valor.</p>
 <p>Nós utilizamos essa lista para que o programa consiga identificar as palavras que já foram segmentadas antes (fará mais sentido mais a frente), o primeiro elemento dessa lista vai começar como <span class="md-colorify md-colorify--green">True</span>, pois uma string vazia sempre vai poder ser segmentada.</p>
@@ -266,7 +266,7 @@ O problema do algoritmo recursivo é a sua complexidade. Podemos suavizá-la imp
 2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
 3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
 </code></pre>
-<p>O segundo passo é adicionar um loop e ele irá pecorrer cada letra da string</p>
+<p>O segundo passo é adicionar um loop que irá pecorrer cada letra da string</p>
 <pre><code class="language-py">1 funcao word_break(string):
 2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
 3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
@@ -287,9 +287,7 @@ que comece em j e vai até i pertence ao dicionário ou não.</p>
 </code></pre>
 <blockquote class="question">
 <p>Exercício 12</p>
-<p>Dado a seguinte lista de palavras e a string “tvplasma4kz” qual seria a saída do código?</p>
-<pre><code class="language-py">tv,plasma, 4k, led, lcd, oled, brasil
-</code></pre>
+<p>Dado a seguinte lista de palavras e a string “tvplasma4kz” e o dicionário [“tv”, “plasma”, “4k”, “led”, “lcd”, “oled”, “brasil”] qual seria a saída do código?</p>
 <details class="answer">
 <summary>Gabarito</summary>
 <pre><code class="language-py">1 "tv"
@@ -299,7 +297,7 @@ que comece em j e vai até i pertence ao dicionário ou não.</p>
 </details>
 </blockquote>
 <p>Como pode ser visto acima, o algorítimo já está conseguindo quebrar a string e verificar se existe ou não no dicionário, porém ele ainda não consegue identificar se a string realmente pode ser seguimentada ou não.</p>
-<p>Para que ele consiga fazer essa proeza nós finalmente vamos utilizar a lista inicializada anteriormente. Primeiro vamos por uma condição adjunto com o outro, que só irá entrar nessa condição caso o valor da lista dp na posição j (do loop interno) for <span class="md-colorify md-colorify--green">True</span>, caso ele consiga ter as duas condições realizadas, vamos por verdadeira na lista a condição <span class="md-colorify md-colorify--green">True</span> na posição i e depois do loop iremos devolver o último elemento da lista.</p>
+<p>Para que ele consiga fazer essa proeza finalmente vamos utilizar a lista inicializada anteriormente. Primeiro vamos por uma condição adjunto com o outro, que só irá entrar nessa condição caso o valor da lista dp na posição j (do loop interno) for <span class="md-colorify md-colorify--green">True</span>, caso ele consiga ter as duas condições realizadas, vamos por verdadeiro na lista a condição <span class="md-colorify md-colorify--green">True</span> na posição i e depois do loop iremos devolver o último elemento da lista.</p>
 <p>Nós fazemos todas essas condições pois na lista dp ela irá marcar como <span class="md-colorify md-colorify--green">True</span> o início e o fim de uma palavra válida então caso a string consiga ser sedimentada ela sempre irá apresentar true no último elemento, pois será a marcação do fim da última string encontrada e caso não encontre tal palavra o último elemento será <span class="md-colorify md-colorify--red">False</span>.</p>
 <pre><code class="language-py">1 funcao word_break(string, dicionario):
 2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
@@ -342,7 +340,7 @@ que comece em j e vai até i pertence ao dicionário ou não.</p>
     return dp[len(string)]
 </code></pre>
 <p>A seguir temos uma breve animação do algoritmo para um maior entendimento:</p>
-<div class="animation"><img class="frame" src="img/dinamo/dinamo01.png" alt="1"><img class="frame" src="img/dinamo/dinamo02.png" alt="2"><img class="frame" src="img/dinamo/dinamo03.png" alt="3"><img class="frame" src="img/dinamo/dinamo04.png" alt="4"><img class="frame" src="img/dinamo/dinamo05.png" alt="5"><img class="frame" src="img/dinamo/dinamo06.png" alt="6"><img class="frame" src="img/dinamo/dinamo07.png" alt="7"><img class="frame" src="img/dinamo/dinamo08.png" alt="8"><img class="frame" src="img/dinamo/dinamo09.png" alt="9"><img class="frame" src="img/dinamo/dinamo10.png" alt="10"><img class="frame" src="img/dinamo/dinamo11.png" alt="11"><img class="frame" src="img/dinamo/dinamo12.png" alt="12"><img class="frame" src="img/dinamo/dinamo13.png" alt="13"><img class="frame" src="img/dinamo/dinamo14.png" alt="14"><img class="frame" src="img/dinamo/dinamo15.png" alt="15"><img class="frame" src="img/dinamo/dinamo16.png" alt="16"><img class="frame" src="img/dinamo/dinamo17.png" alt="17"><img class="frame" src="img/dinamo/dinamo18.png" alt="18"><img class="frame" src="img/dinamo/dinamo19.png" alt="19"><img class="frame" src="img/dinamo/dinamo20.png" alt="20"><img class="frame" src="img/dinamo/dinamo21.png" alt="21"><img class="frame" src="img/dinamo/dinamo22.png" alt="22"><img class="frame" src="img/dinamo/dinamo23.png" alt="23"><img class="frame" src="img/dinamo/dinamo24.png" alt="24"><img class="frame" src="img/dinamo/dinamo25.png" alt="25"><img class="frame" src="img/dinamo/dinamo26.png" alt="26"><img class="frame" src="img/dinamo/dinamo27.png" alt="27"><img class="frame" src="img/dinamo/dinamo28.png" alt="28"><img class="frame" src="img/dinamo/dinamo29.png" alt="29"><img class="frame" src="img/dinamo/dinamo30.png" alt="30"><img class="frame" src="img/dinamo/dinamo9.png" alt="31"></div>
+<div class="animation"><img class="frame" src="img/dinamo/dinamo01.png" alt="1"><img class="frame" src="img/dinamo/dinamo02.png" alt="2"><img class="frame" src="img/dinamo/dinamo03.png" alt="3"><img class="frame" src="img/dinamo/dinamo04.png" alt="4"><img class="frame" src="img/dinamo/dinamo05.png" alt="5"><img class="frame" src="img/dinamo/dinamo06.png" alt="6"><img class="frame" src="img/dinamo/dinamo07.png" alt="7"><img class="frame" src="img/dinamo/dinamo08.png" alt="8"><img class="frame" src="img/dinamo/dinamo09.png" alt="9"><img class="frame" src="img/dinamo/dinamo10.png" alt="10"><img class="frame" src="img/dinamo/dinamo11.png" alt="11"><img class="frame" src="img/dinamo/dinamo12.png" alt="12"><img class="frame" src="img/dinamo/dinamo13.png" alt="13"><img class="frame" src="img/dinamo/dinamo14.png" alt="14"><img class="frame" src="img/dinamo/dinamo15.png" alt="15"><img class="frame" src="img/dinamo/dinamo16.png" alt="16"><img class="frame" src="img/dinamo/dinamo17.png" alt="17"><img class="frame" src="img/dinamo/dinamo18.png" alt="18"><img class="frame" src="img/dinamo/dinamo19.png" alt="19"><img class="frame" src="img/dinamo/dinamo20.png" alt="20"><img class="frame" src="img/dinamo/dinamo21.png" alt="21"><img class="frame" src="img/dinamo/dinamo22.png" alt="22"><img class="frame" src="img/dinamo/dinamo23.png" alt="23"><img class="frame" src="img/dinamo/dinamo24.png" alt="24"><img class="frame" src="img/dinamo/dinamo25.png" alt="25"><img class="frame" src="img/dinamo/dinamo26.png" alt="26"><img class="frame" src="img/dinamo/dinamo27.png" alt="27"><img class="frame" src="img/dinamo/dinamo28.png" alt="28"><img class="frame" src="img/dinamo/dinamo29.png" alt="29"><img class="frame" src="img/dinamo/dinamo30.png" alt="30"><img class="frame" src="img/dinamo/dinamo31.png" alt="31"></div>
 <blockquote class="question">
 <p>Exercício 14</p>
 <p>Você saberia dizer qual é a complexidade do algoritmo de programação dinâmica?</p>

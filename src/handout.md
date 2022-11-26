@@ -6,7 +6,7 @@ Algoritmo de Programação Dinâmica para o Problema da Quebra em Palavras
 Problema
 ---
 
-**Qual a o problema?**
+**Qual o problema?**
 
 O problema da quebra em palavras consiste em dado um conjunto de palavras sem espaço, descobrir se esse mesmo conjunto de palavras pode ser separado por espaços ou não.
 
@@ -251,7 +251,7 @@ Como a gente está rodando um código recursivo, nós devemos por uma condição
 
 Agora que já temos praticamente a ideia e o código entendidos.
 
-Com a string de entrada "tvplasma" e o dicionário ["tv, "plasma"]. Você consegue explicar como esse algorítmo verificar se a string realmente consegue ser repartida ou não?
+Com a string de entrada "tvplasma" e o dicionário ["tv, "plasma"]. Você consegue explicar como esse algorítmo verifica se a string realmente consegue ser repartida ou não?
 
 ::: Gabarito
 Quando o código entrar na primeira condição, ou seja quando ele afirmar que "tv" é uma palavra que exista no banco de dados, o resto da string, ou seja, "plasma", que vem logo após "tv", será enviado para a recursão da função verificando que "plasma" também existe no banco de dados devolvendo true.
@@ -296,9 +296,11 @@ $O(2^n)$
 **Programação Dinâmica**
 
 **O que é?**
+
 É um método de otimização de algoritmos que é uma espécie de um algoritmo de recursão com o apoio de uma tabela. Ou seja, a programação dinâmica, guarda os resultados dos subproblemas encontrados durante a recursão, para não ser preciso calcular novamente.
 
-**Como isso se aplica ao nosso problema**
+**Como isso se aplica ao nosso problema?**
+
 O problema do algoritmo recursivo é a sua complexidade. Podemos suavizá-la implementando a programação dinâmica, já que, por salvar os resultados dos subproblemas, ele não precisa calcular novamente, o que acaba tornando-o mais rápido.
 
 Agora para entendermos melhor a lógica da programação dinâmica, realizaremos ela passo a passo no código.
@@ -312,7 +314,7 @@ Nós utilizamos essa lista para que o programa consiga identificar as palavras q
 2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
 3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
 ```
-O segundo passo é adicionar um loop e ele irá pecorrer cada letra da string
+O segundo passo é adicionar um loop que irá pecorrer cada letra da string
 
 ``` py
 1 funcao word_break(string):
@@ -338,11 +340,8 @@ que comece em j e vai até i pertence ao dicionário ou não.
 ```
 ??? Exercício 12
 
-Dado a seguinte lista de palavras e a string "tvplasma4kz" qual seria a saída do código?
+Dado a seguinte lista de palavras e a string "tvplasma4kz" e o dicionário ["tv", "plasma", "4k", "led", "lcd", "oled", "brasil"] qual seria a saída do código?
 
-``` py
-tv,plasma, 4k, led, lcd, oled, brasil
-```
 ::: Gabarito
 ``` py
 1 "tv"
@@ -354,7 +353,7 @@ tv,plasma, 4k, led, lcd, oled, brasil
 
 Como pode ser visto acima, o algorítimo já está conseguindo quebrar a string e verificar se existe ou não no dicionário, porém ele ainda não consegue identificar se a string realmente pode ser seguimentada ou não.
 
-Para que ele consiga fazer essa proeza nós finalmente vamos utilizar a lista inicializada anteriormente. Primeiro vamos por uma condição adjunto com o outro, que só irá entrar nessa condição caso o valor da lista dp na posição j (do loop interno) for {green}(True), caso ele consiga ter as duas condições realizadas, vamos por verdadeira na lista a condição {green}(True) na posição i e depois do loop iremos devolver o último elemento da lista.
+Para que ele consiga fazer essa proeza finalmente vamos utilizar a lista inicializada anteriormente. Primeiro vamos por uma condição adjunto com o outro, que só irá entrar nessa condição caso o valor da lista dp na posição j (do loop interno) for {green}(True), caso ele consiga ter as duas condições realizadas, vamos por verdadeiro na lista a condição {green}(True) na posição i e depois do loop iremos devolver o último elemento da lista.
 
 Nós fazemos todas essas condições pois na lista dp ela irá marcar como {green}(True) o início e o fim de uma palavra válida então caso a string consiga ser sedimentada ela sempre irá apresentar true no último elemento, pois será a marcação do fim da última string encontrada e caso não encontre tal palavra o último elemento será {red}(False).
 
