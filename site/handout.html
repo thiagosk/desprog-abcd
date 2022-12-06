@@ -93,115 +93,74 @@ True
 <p>“camisaxadrez” retorna <span class="md-colorify md-colorify--red">False</span>, pois no banco de dados não há a palavra “xadrez”, apesar de ter “camisa”.</p>
 </details>
 </blockquote>
-<p>Agora que já sabemos as entradas e as saídas do algoritmo, vamos ver como o começo chega no fim.</p>
-<p>Para isso iremos utilizar um algoritmo, cuja ideia seja pegar uma parte da string, e checar se cada uma delas é uma palavra ou não. Quando se acha uma palavra, o algoritmo faz a mesma estratégia para o resto da string original. Seguindo a seguinte ideia:</p>
-<p>Pegando a string “garrafadeagua”, o algoritmo faria até encontrar a primeira palavra:</p>
-<pre><code class="language-py">1 "g"
-2 "ga"
-3 "gar"
-4 "garr"
-5 "garra"
-6 "garraf"
-7 "garrafa"
-</code></pre>
-<p>Como dito, a cada iteração o algoritmo checa se a substring é uma palavra do dicionário ou não. No caso, na iteração 7 o algoritmo encontra “garrafa” e agora irá checar o resto da string (“deagua”) para ver se forma uma palavra, da seguinte forma:</p>
-<pre><code class="language-py">1 "d"
-2 "de"
-</code></pre>
+<p>Agora que já sabemos as entradas e as saídas do algoritmo, muito provavelmente você acredita que a implementação da lógica desse código seja muito simples e que apenas pecorrer a palavra de entrada e ir segmentando-a quando encontra uma palavra no dicionário seja o suficente, porém não é tão simples assim.</p>
+<p>Vamos imaginar que implementamos essa lógica de percorrer a string.</p>
 <blockquote class="question">
 <p>Exercício 3</p>
-<p>Agora que o algoritmo achou mais uma palavra, como ficaria as iterações do resto da string para achar outra palavra?</p>
+<p>Para uma entrada de “cozinhandoparameusfilhos” e que o dicionário seja [cozinha, cozinhando, para, meu, meus, filhos].
+Qual será a saída ?</p>
 <details class="answer">
 <summary>Gabarito</summary>
-<p>Depois de encontrar “de”, o algoritmo começaria a checar o resto da substring por outra palavra.</p>
-<pre><code class="language-py">1 "a"
-2 "ag"
-3 "agu"
-4 "agua"
+<pre><code class="language-py">False
 </code></pre>
-<p>Como chegamos no fim da string e o algoritmo achou a palavra “agua”. E como toda a string original pode ser dividida em “garrada”+“de”+“agua”, o algoritmo retorna <span class="md-colorify md-colorify--green">True</span>.</p>
+<p>A resposta vai ser <span class="md-colorify md-colorify--red">False</span>, pois com essa lógica o código irá seguimentar a palavra “cozinha” e não encontrará mais nenhuma palavra coincidente no dicionário.</p>
+<p>Por mais que seja possível segmentá-la em “cozinhando para os meus filhos”, porém, do jeito que está implementado o algorítmo ele não verifica se existe outras maneiras de segmentar uma mesma string, dessa forma, parando na palavra “cozinha”.</p>
+<p>Vale observar que funcionaria para os exemplos do exercício 2, porém, como foi mostrado, não funciona para todas as entradas, portanto, se mostrando ineficiente.</p>
 </details>
+</blockquote>
+<p>Então como implementamos uma lógica realmente eficiente ?</p>
+<p>Para isso iremos utilizar um algoritmo, cuja ideia separaria recursivamente as possíveis palavras em ramos individuais, ou seja, para a string “cozinhandoparameusfilhos” com o dicionário [cozinha, cozinhando, para, meu, meus, filhos] o seu primeiro ramo seria segmentar a palavra “cozinha” e testar, recursivamente, o resto da string “ndoparameusfilhos”.</p>
+<p>Em um outro ramo a palavra segmentada primeira não será mais “cozinha” e sim “cozinhando” e de novo verificando o resto da string “parameusfilhos” recursivamente, dessa forma, verificando que a string pode ser segmentada em “cozinhando para meus filhos”.</p>
+<p>Para que seja mais fácil a sua visualização a ideia dele foi representada nessa árvore de recursão:</p>
+<figure class="img"><img src="img/arvoreExemplo.png" alt="Arvore de recursão"></figure>
+<p>Como em pelo menos um dos seus caminhos foi possível segmentar uma frase, com todas as letras da string, o algorítimo irá devolver <span class="md-colorify md-colorify--green">True</span> com a segmentação da frase “cozinhando para os meus filhos”</p>
+<blockquote class="warning">
+<p>Aviso</p>
+<p>O código só irar devolver <span class="md-colorify md-colorify--green">True</span> e não a frase segmentada!</p>
 </blockquote>
 <blockquote class="question">
 <p>Exercício 4</p>
-<p>Qual método que a gente aprendeu em Desafios de Programação que segue a lógica de iteração feita acima?</p>
+<p>Para a entrada “felizmentesocorro” e dicionário [feliz, felizmente, mente, so, socorro, corro], desenha a sua árvore de recursão.</p>
+<p>Você pode usar esse <a href="https://drive.google.com/file/d/1lY8NxV8rIwt_kSXkQWm6Jkp45ekfn5tc/view" target="_blank">template</a> e esse site <a href="https://app.diagrams.net/" target="_blank">online</a>.</p>
 <details class="answer">
 <summary>Gabarito</summary>
-<p>O método de recursão!</p>
-<p>O algoritmo de recursão permite checarmos a string por uma palavra e quando a encontramos, recursamos para o resto da string, e acaba quando chega no seu fim.</p>
+<figure class="img"><img src="img/arvoreGabarito.png" alt="Arvore de recursão gabarito"></figure>
+<p>Dessa vez não houve apenas uma segmentação de frase possível, mas 4: “feliz mente so corro”, “feliz mente socorro”, “felizmente so corro”, “felizmente socorro”.</p>
 </details>
 </blockquote>
-<p>Agora que já temos uma ideia do que o código irá fazer e qual algoritmo iremos usar, como o codificamos?
-Para um melhor entendimento vamos representá-los na forma escrita e dividí-los em partes.</p>
 <blockquote class="question">
 <p>Exercício 5</p>
-<p>Primeiramente, como fariamos um código (pode ser um pseudocódigo, ou qualquer coisa) que faria isso:</p>
-<p>Lembrando que já recebemos a string (“garrafadeagua”).</p>
-<pre><code class="language-py">1 "g"
-2 "ga"
-3 "gar"
-4 "garr"
-5 "garra"
-6 "garraf"
-7 "garrafa"
-</code></pre>
+<p>No exercício anterior se prestarmos bem atenção na árvore de recursão notamos um problema que esse algorítmo tem. Você consegue identificar ?</p>
 <details class="answer">
 <summary>Gabarito</summary>
-<p>Nessa primeira interação utilizariamos um <strong>loop</strong> a qual irá pecorrer cada elemento da string sucessivamente, e um <strong>fatiamento</strong> para irmos aumentando a string analisada.</p>
-<pre><code class="language-py">1 funcao word_break(string):
-2    
-3    para cada posição da letra da string:
-4        Print(string[0:posição])
-</code></pre>
+<p>Ele faz repetições desnecessárias de verificações de palavras que outros ramos da sua árvore já indentificaram, dessa forma, podendo repetir ramos inteiros.</p>
+<figure class="img"><img src="img/arvoreGabarito2.png" alt="Arvore de recursão gabarito 2"></figure>
+<p>Como pode observar na imagem de cima as palavras “socorro” e “corro” foram verificadas 2 vezes e a string vazia “” foi pior ainda, sendo verificada 4 vezes.</p>
+<p>Essas repetições acabam deixando o código mais lento e com uma complexidade maior, pois mais intereções serão necessárias para identificar as frases maiores e dicionários maiores.</p>
+<p>OBS:</p>
+<p>Se vc tivesse percebido isso antes poderia ter copiado e colado todo o ramo a partir do socorro para terminar o exercício 4 mais rápido.</p>
+<figure class="img"><img src="img/arvoreGabarito3.png" alt="Arvore de recursão gabarito 3"></figure>
 </details>
 </blockquote>
-<p>Agora, para verificarmos se a substring é uma palavra, iremos adicionar na entrada da função um dicionário, que é um lista de palavras válidas, ou seja, um banco de dados. Além disso foi adicionado uma condição dentro do loop a qual só irá entrar caso a palavra exista dentro do banco de dados.</p>
+<p>Agora que já temos uma ideia do que o código irá fazer e qual algoritmo iremos usar, como o codificamos?</p>
+<blockquote class="warning">
+<p>Aviso</p>
+<p>Para um melhor entendimento vamos representá-lo na forma escrita e dividí-lo por partes.</p>
+</blockquote>
+<p>Para começar vamos criar uma função que recebe uma string e um dicionário e essa função pecorre a string inteira verificando se alguma combinação existe no dicionário.</p>
 <pre><code class="language-py">1 funcao word_break(string, dicionario):
 2
 3    para cada posição da letra da string:
 4        caso string[0:posição] esteja no dicionário:
-5            Print(string[0:posição])
+5            continua
 </code></pre>
 <blockquote class="question">
 <p>Exercício 6</p>
-<p>Agora a entrada da função word_break será “tvplasma” e o dicionário será [“tv”, “plasma”] o que seria printado na linha 5 em cada interação no loop?</p>
+<p>Agora que já conseguimos pegar partes da string original e identificar se essa parte é uma palavra válida, só resta checar o resto da string. Você consegue pensar em como faríamos isso?</p>
 <details class="answer">
 <summary>Gabarito</summary>
-<pre><code class="language-py">1 "tv"
-</code></pre>
-<p>Provavelmente você estranhou que o algorítimo não ter printado a palavra “plasma” nas suas interações. Reveja o código acima e tente entender a causa disso.</p>
-<p>Exatamente! Por enquanto o código não está cortando as palavras existentes e por isso nunca pega a palavra plasma, mas palavras como “tvp”, “tvpl”, “tvpla” e assim por diante, que não existem no banco de dados.</p>
-</details>
-</blockquote>
-<blockquote class="question">
-<p>Exercício 7</p>
-<p>Agora que já conseguimos pegar partes da string original e identificar se essa parte é uma palavra válida, só resta checar o resto da string. Como fariamos isso?</p>
-<details class="answer">
-<summary>Gabarito</summary>
-<p>Por recursão! E é com ele que iremos resolver o problema do exercício anterior, a quebra da string quando uma palavra já foi identificada no loop.</p>
-<pre><code class="language-py">1 funcao word_break(string, dicionario):
-2  
-3
-4    para cada posição da letra da string:
-5        caso string[0:posição] esteja no dicionário:
-6        
-7            caso word_break(string[posição:], dicionario): # Verifica se o resto da string é segmentada de forma recursiva
-9                devolve true
-10    
-11    devolve false
-</code></pre>
-<p>Adicionamos a chamada recursiva dentro da primeira condição a qual já foi implementada antes, porém iremos mandar o resto da string que não foi verificada se existe no banco de dados ou não, e dentro dessa condição iremos devolver True, ou seja, a string pode ser repartida e caso o loop acabe será devolvido False, dessa forma declarando que a string não pode ser repartida.</p>
-</details>
-</blockquote>
-<blockquote class="question">
-<p>Exercício 8</p>
-<p>Faça uma breve simulação do código do exercício anterior com as entradas (“garrafadeagua”, [“garrafa”, “de”, “agua”]).</p>
-<p>Qual o problema encontrado?</p>
-<p>Dica: o que acontece depois de o algoritmo achar “agua”.</p>
-<details class="answer">
-<summary>Gabarito</summary>
-<p>No final, quando o algoritmo acha a palavra “agua”, ainda é entrado na recursão da linha 7.</p>
-<p>Como a gente está rodando um código recursivo, nós devemos por uma condição de parada se não ele rodará em um “loop infinito”. A condição seria quando o tamanho da string fosse 0, dessa forma devolvendo true.</p>
+<p>Por recursão!</p>
+<p>Como já foi explicado nos exercícios anteriores toda vez que indentificamos uma segmentação de palavra válida verificamos o resto da string de forma recursiva.</p>
 <pre><code class="language-py">1 funcao word_break(string, dicionario):
 2    se string estiver vazia devolve true # Condição para retirar a recursão do "Loop infinito"
 3
@@ -213,19 +172,22 @@ Para um melhor entendimento vamos representá-los na forma escrita e dividí-los
 10    
 11    devolve false
 </code></pre>
+<p>Adicionamos a chamada recursiva dentro da primeira condição a qual já foi implementada antes, porém iremos mandar o resto da string que não foi verificada se existe no banco de dados ou não, e dentro dessa condição iremos devolver <span class="md-colorify md-colorify--green">True</span>, ou seja, a string pode ser repartida e caso o loop acabe será devolvido <span class="md-colorify md-colorify--red">False</span>, dessa forma declarando que a string não pode ser repartida.</p>
+<p>OBS:</p>
+<p>Lembrando que estamos trabalhando com uma função recursiva, portanto temos que adicionar uma condição de parada que no caso é a condição de se a string for vazia que irá sempre devolver <span class="md-colorify md-colorify--green">True</span>, pois toda string vazia pode ser segmentada.</p>
 </details>
 </blockquote>
 <blockquote class="question">
-<p>Exercício 9</p>
+<p>Exercício 7</p>
 <p>Agora que já temos praticamente a ideia e o código entendidos.</p>
 <p>Com a string de entrada “tvplasma” e o dicionário ["tv, “plasma”]. Você consegue explicar como esse algorítmo verifica se a string realmente consegue ser repartida ou não?</p>
 <details class="answer">
 <summary>Gabarito</summary>
-<p>Quando o código entrar na primeira condição, ou seja quando ele afirmar que “tv” é uma palavra que exista no banco de dados, o resto da string, ou seja, “plasma”, que vem logo após “tv”, será enviado para a recursão da função verificando que “plasma” também existe no banco de dados devolvendo true.</p>
+<p>Quando o código entrar na primeira condição, ou seja quando ele afirmar que “tv” é uma palavra que exista no banco de dados, o resto da string, ou seja, “plasma”, que vem logo após “tv”, será enviado para a recursão da função verificando que “plasma” também existe no banco de dados devolvendo <span class="md-colorify md-colorify--green">True</span>.</p>
 </details>
 </blockquote>
 <blockquote class="question">
-<p>Exercício 10</p>
+<p>Exercício 8</p>
 <p>Imagine agora que as entradas das funções vão ser “garrafadeagua” e o dicionário seja [“garrafa”, “agua”] qual seria a saída? Ele faria alguma recursão?</p>
 <details class="answer">
 <summary>Gabarito</summary>
@@ -247,35 +209,45 @@ Para um melhor entendimento vamos representá-los na forma escrita e dividí-los
 9    return False
 </code></pre>
 <blockquote class="question">
-<p>Exercício 11</p>
+<p>Exercício 9</p>
 <p>Você saberia dizer qual é a complexidade do algoritmo de recursão?</p>
 <details class="answer">
 <summary>Gabarito</summary>
-<p>\(O(2^n)\)</p>
+<p>Como foi explicado no exercício 5, esse algorítmo tem um terrível problema, que é a sua repetição desnecessária na verificação de algumas palavras, por causa disso, a sua complexidade é bem ruim e quanto maior as suas entradas mais elevado fica a sua complexidade, dessa forma tendo uma complexidade de \(O(2^n)\).</p>
 </details>
 </blockquote>
 <p><strong>Programação Dinâmica</strong></p>
 <p><strong>O que é?</strong></p>
-<p>É um método de otimização de algoritmos que é uma espécie de um algoritmo de recursão com o apoio de uma tabela. Ou seja, a programação dinâmica, guarda os resultados dos subproblemas encontrados durante a recursão, para não ser preciso calcular novamente.</p>
+<p>É um método de otimização de algoritmos que é uma espécie de um algoritmo de recursão com o apoio de uma tabela. Ou seja, a programação dinâmica, guarda os resultados dos subproblemas encontrados durante a recursão, para não ser preciso calcular novamente, dessa forma, sendo uma solução do problema do algorítmo anterior.</p>
+<blockquote class="warning">
+<p>Aviso</p>
+<p>Essa têcnica de salvar uma ação anterior, ou seja, ter uma espécie de “memória” interna é conhecida como <strong>memoização</strong>.</p>
+</blockquote>
 <p><strong>Como isso se aplica ao nosso problema?</strong></p>
 <p>O problema do algoritmo recursivo é a sua complexidade. Podemos suavizá-la implementando a programação dinâmica, já que, por salvar os resultados dos subproblemas, ele não precisa calcular novamente, o que acaba tornando-o mais rápido.</p>
 <p>Agora para entendermos melhor a lógica da programação dinâmica, realizaremos ela passo a passo no código.</p>
-<p>Para começar precisamos iniciar uma lista que possua o tamanho da string + 1 e todos os seus elementos iram apresentar o valor <span class="md-colorify md-colorify--red">False</span>, menos o seu primeiro valor.</p>
-<p>Nós utilizamos essa lista para que o programa consiga identificar as palavras que já foram segmentadas antes (fará mais sentido mais a frente), o primeiro elemento dessa lista vai começar como <span class="md-colorify md-colorify--green">True</span>, pois uma string vazia sempre vai poder ser segmentada.</p>
-<pre><code class="language-py">1 funcao word_break(string):
+<blockquote class="question">
+<p>Exercício 10</p>
+<p>A programação dinâmica, como já foi dito antes, necessita de um cache, uma memória, para guardar acontecimentos passados e assim utilizar esse conhecimento futuramente. Como vc pensaria em implementar essa mecânica ?</p>
+<details class="answer">
+<summary>Gabarito</summary>
+<p>Poderia ser feito com uma Lista, que guardaria a posição inicial e final de uma palavra válida!</p>
+<p>Para começar ela seria inicializada com todos os seus elementos como <span class="md-colorify md-colorify--red">False</span>, menos o seu primeiro valor, pois ele marcaria o inicio da primeira palavra, sendo inicializado como <span class="md-colorify md-colorify--green">True</span>.</p>
+<p>Como ela precisa marcar o início e o FIM de uma palavra válida ela precisa ter o tamaho da string + 1.</p>
+<pre><code class="language-py">1 funcao word_break(string, dicionário):
 2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
 3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
 </code></pre>
-<p>O segundo passo é adicionar um loop que irá pecorrer cada letra da string</p>
-<pre><code class="language-py">1 funcao word_break(string):
-2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
-3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
-4
-5    para todo i no tamanho da string + 1:
-6        Print(string[i])
-</code></pre>
-<p>Na terceira parte iremos adicionar uma nova entrada para a função, o dicionário, para servir como condição. Sendo assim, adicionaremos um loop interno que irá perorrer cada substring em relação ao i do loop externo checando se a substring formada
-que comece em j e vai até i pertence ao dicionário ou não.</p>
+</details>
+</blockquote>
+<p>Outra vantagem da programação dinâmica é que sua implementação não precisa, necessariamente, de uma lógica recursiva, à qual deixa o código mais complexo.</p>
+<blockquote class="question">
+<p>Exercício 11</p>
+<p>Na forma recursiva usamos esse próprio recurso (ser recursiva) para separar as palavras válidas do resto da string que ainda seria verificada. Porém como não iremos mais usar esse recurso você conseguiria pensar em como vamos fazer essas divisões ?</p>
+<p><strong>Obs:</strong></p>
+<p>Por agora não precisa se preocupar em utilizar a memória criada no exercício anterior.</p>
+<details class="answer">
+<summary>Gabarito</summary>
 <pre><code class="language-py">1 funcao word_break(string, dicionario):
 2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
 3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
@@ -283,22 +255,21 @@ que comece em j e vai até i pertence ao dicionário ou não.</p>
 5    para todo i no tamanho da string + 1:
 6        para todo j em i:
 7            se string[j:i] pertece ao dicionario:
-8                Print(string[j:i])
+8                continua
 </code></pre>
-<blockquote class="question">
-<p>Exercício 12</p>
-<p>Dado a seguinte lista de palavras e a string “tvplasma4kz” e o dicionário [“tv”, “plasma”, “4k”, “led”, “lcd”, “oled”, “brasil”] qual seria a saída do código?</p>
-<details class="answer">
-<summary>Gabarito</summary>
-<pre><code class="language-py">1 "tv"
-2 "plasma"
-3 "4k"
-</code></pre>
+<p>A melhor maneira de separarmos cada palavra é com dois loop um dentro do outro, pode até vim a mente que ter dois loop’s será mais complexo que ter apenas um loop, porém entre ter dois loop’s ou uma lógica de recursão, nesse caso, sai mais vantajoso a primeira opção.</p>
+<p>Adicionaremos um loop interno que irá perorrer cada substring em relação ao i do loop externo checando se a substring formada que comece em j e vai até i pertence ao dicionário ou não.</p>
 </details>
 </blockquote>
-<p>Como pode ser visto acima, o algorítimo já está conseguindo quebrar a string e verificar se existe ou não no dicionário, porém ele ainda não consegue identificar se a string realmente pode ser seguimentada ou não.</p>
-<p>Para que ele consiga fazer essa proeza finalmente vamos utilizar a lista inicializada anteriormente. Primeiro vamos por uma condição adjunto com o outro, que só irá entrar nessa condição caso o valor da lista dp na posição j (do loop interno) for <span class="md-colorify md-colorify--green">True</span>, caso ele consiga ter as duas condições realizadas, vamos por verdadeiro na lista a condição <span class="md-colorify md-colorify--green">True</span> na posição i e depois do loop iremos devolver o último elemento da lista.</p>
-<p>Nós fazemos todas essas condições pois na lista dp ela irá marcar como <span class="md-colorify md-colorify--green">True</span> o início e o fim de uma palavra válida então caso a string consiga ser sedimentada ela sempre irá apresentar true no último elemento, pois será a marcação do fim da última string encontrada e caso não encontre tal palavra o último elemento será <span class="md-colorify md-colorify--red">False</span>.</p>
+<p>Como pode ser visto no exercício anterior, o algorítimo já está conseguindo quebrar a string e verificar se existe ou não no dicionário, porém ele ainda não consegue identificar se a string realmente pode ser seguimentada ou não.</p>
+<p>Para que ele consiga fazer essa proeza finalmente vamos utilizar a lista inicializada anteriormente.</p>
+<blockquote class="question">
+<p>Exercício 12</p>
+<p>Tente implementar uma lógica que utiliza a lista que criamos antes, para verificar se a string pode ou não ser segmentada.</p>
+<p><strong>Obs:</strong></p>
+<p>Lembre que essa lista guarda a posição inicial e final de cada palavra <strong>válida</strong>.</p>
+<details class="answer">
+<summary>Gabarito</summary>
 <pre><code class="language-py">1 funcao word_break(string, dicionario):
 2    cria uma lista dp do tamanho da string + 1 preenchida com false menos o primeiro elemento
 3    # O primeiro elemento de dp é true pois uma string vazia sempre pode ser segmentada.
@@ -311,16 +282,12 @@ que comece em j e vai até i pertence ao dicionário ou não.</p>
 10    
 11   devolve o último elemento da lista dp
 </code></pre>
-<blockquote class="question">
-<p>Exercício 13</p>
-<p>Agora para essa função com a entrada de “tvplasma” e o dicionário [“tv”, “plasma”] qual seria a saída ?</p>
-<details class="answer">
-<summary>Gabarito</summary>
-<pre><code class="language-py">1 True
-</code></pre>
+<p>Primeiro vamos por uma condição adjunto com o outro, que só irá entrar nessa condição caso o valor da lista dp na posição j (do loop interno) for <span class="md-colorify md-colorify--green">True</span>, caso ele consiga ter as duas condições realizadas, vamos por verdadeiro na lista a condição <span class="md-colorify md-colorify--green">True</span> na posição i e depois do loop iremos devolver o último elemento da lista.</p>
+<p>Nós fazemos todas essas condições pois na lista dp ela irá marcar como <span class="md-colorify md-colorify--green">True</span> o início e o fim de uma palavra válida então caso a string consiga ser sedimentada ela sempre irá apresentar <span class="md-colorify md-colorify--green">True</span> no último elemento, pois será a marcação do fim da última string encontrada e caso não encontre tal palavra o último elemento será <span class="md-colorify md-colorify--red">False</span>.</p>
 </details>
 </blockquote>
-<p>Segue o código em python para que seja mais fácil a compreensão</p>
+<p>É por incrível que parece é apenas isso, o algorítmo programação dinâmica foi totalmente implementado!!</p>
+<p>Segue o código em python para que seja mais fácil a sua compreensão</p>
 <pre><code class="language-py">def wordBreak(string, dictionary):
      
     # create a dp table to store results of subproblems
@@ -339,17 +306,26 @@ que comece em j e vai até i pertence ao dicionário ou não.</p>
      
     return dp[len(string)]
 </code></pre>
-<p>A seguir temos uma breve animação do algoritmo para um maior entendimento:</p>
+<p>A seguir temos uma breve animação do algoritmo para um maior entendimento</p>
 <div class="animation"><img class="frame" src="img/dinamo/dinamo01.png" alt="1"><img class="frame" src="img/dinamo/dinamo02.png" alt="2"><img class="frame" src="img/dinamo/dinamo03.png" alt="3"><img class="frame" src="img/dinamo/dinamo04.png" alt="4"><img class="frame" src="img/dinamo/dinamo05.png" alt="5"><img class="frame" src="img/dinamo/dinamo06.png" alt="6"><img class="frame" src="img/dinamo/dinamo07.png" alt="7"><img class="frame" src="img/dinamo/dinamo08.png" alt="8"><img class="frame" src="img/dinamo/dinamo09.png" alt="9"><img class="frame" src="img/dinamo/dinamo10.png" alt="10"><img class="frame" src="img/dinamo/dinamo11.png" alt="11"><img class="frame" src="img/dinamo/dinamo12.png" alt="12"><img class="frame" src="img/dinamo/dinamo13.png" alt="13"><img class="frame" src="img/dinamo/dinamo14.png" alt="14"><img class="frame" src="img/dinamo/dinamo15.png" alt="15"><img class="frame" src="img/dinamo/dinamo16.png" alt="16"><img class="frame" src="img/dinamo/dinamo17.png" alt="17"><img class="frame" src="img/dinamo/dinamo18.png" alt="18"><img class="frame" src="img/dinamo/dinamo19.png" alt="19"><img class="frame" src="img/dinamo/dinamo20.png" alt="20"><img class="frame" src="img/dinamo/dinamo21.png" alt="21"><img class="frame" src="img/dinamo/dinamo22.png" alt="22"><img class="frame" src="img/dinamo/dinamo23.png" alt="23"><img class="frame" src="img/dinamo/dinamo24.png" alt="24"><img class="frame" src="img/dinamo/dinamo25.png" alt="25"><img class="frame" src="img/dinamo/dinamo26.png" alt="26"><img class="frame" src="img/dinamo/dinamo27.png" alt="27"><img class="frame" src="img/dinamo/dinamo28.png" alt="28"><img class="frame" src="img/dinamo/dinamo29.png" alt="29"><img class="frame" src="img/dinamo/dinamo30.png" alt="30"><img class="frame" src="img/dinamo/dinamo31.png" alt="31"></div>
 <blockquote class="question">
 <p>Exercício 14</p>
 <p>Você saberia dizer qual é a complexidade do algoritmo de programação dinâmica?</p>
 <details class="answer">
 <summary>Gabarito</summary>
-<p>\(O(n^2)\)</p>
+<p>Como foi dito antes a programação dinâmica resolveu um grande problema que o código da recursão tinha, a verificação de palavras iquais, por causa disso a sua complexidade diminuiu consideravelmente sendo de \(O(n^2)\) caso n &gt; s ou \(O(n^2)\) caso s &gt; n, onde s é o tamanho da maior palavra no dicionário e n é o tamanho da string recebida na função.</p>
 </details>
 </blockquote>
+<!-- ??? Desafio
 
+Você saberia dizer qual é a complexidade do algoritmo de programação dinâmica?
+::: Gabarito
+Como foi dito antes a programação dinâmica resolveu um grande problema que o código da recursão tinha, a verificação de palavras iquais, por causa disso a sua complexidade diminuiu consideravelmente sendo de $O(n^2)$ caso n > s ou $O(n^2)$ caso s > n, onde s é o tamanho da maior palavra no dicionário e n é o tamanho da string recebida na função.
+:::
+
+???
+
+É interressante observar que por mais que as duas primeiras frases não tenham muito sentido lógico o algorítmo não faz essa diferenciação tratando-as como possíveis frases. -->
 
             </main>
             <footer>
